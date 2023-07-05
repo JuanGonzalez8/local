@@ -6,16 +6,9 @@
 		header("Location: index.php");
 	}
 	
-	$id = $_SESSION['id'];
-	$tipo_usuario = $_SESSION['tipo_usuario'];
+	// $nombres = $_SESSION['nombres'];
 	
-	if($tipo_usuario == 1){
-		$where = "";
-		} else if($tipo_usuario == 2){
-		$where = "WHERE id=$id";
-	}
-	
-	$sql = "SELECT * FROM usuarios $where";
+	$sql = "SELECT * FROM reclutamiento";
 	$resultado = $mysqli->query($sql);
 	
 	
@@ -51,9 +44,7 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="index.php">Logout</a>
+						<a class="dropdown-item" href="index.php">Cerrar sesión</a>
 					</div>
 				</li>
 			</ul>
@@ -62,7 +53,7 @@
 			<div id="layoutSidenav_nav">
 				<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 					<div class="sb-sidenav-menu">
-					<div class="nav">
+						<div class="nav">
 							<div class="sb-sidenav-menu-heading">Core</div>
 							<a class="nav-link" href="principal.php"
 							><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -85,51 +76,62 @@
 						</div>
 					</div>
 					<div class="sb-sidenav-footer">
-						<div class="small">Logged in as:</div>
-						Start Bootstrap
+						<div class="small">Sesión iniciada como:</div>
+						Usuario
 					</div>
 				</nav>
 			</div>
 			<div id="layoutSidenav_content">
 				<main>
-					<div class="container-fluid">
-						<h1 class="mt-4">Tables</h1>
+					<div class="container-fluid"><br>
+						<h1 class="mt-0">Candidatos</h1>
 						<ol class="breadcrumb mb-4">
 							<li class="breadcrumb-item"><a href="principal.php">Dashboard</a></li>
-							<li class="breadcrumb-item active">Tables</li>
+							<li class="breadcrumb-item active">Módulo de reclutamiento</li>
 						</ol>
 						<div class="card mb-4">
-							<div class="card-body">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>.</div>
+							<div class="card-body">En este apartado, encontrarás la fuente de información sobre los futuros reclutamientos.</div>
 						</div>
 						<div class="card mb-4">
-							<div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+						</div>
+						<div class="card mb-4">
+							<div class="card-header"><i class="fas fa-table mr-1"></i>Posibles reclutamientos</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 										<thead>
 											<tr>
-												<th>Usuario</th>
-												<th>Password</th>
 												<th>Nombre</th>
-												<th>Tipo Usuario</th>
+												<th>Primer apellido</th>
+												<th>Segundo apellido</th>
+												<th>Teléfono</th>
+                                                <th>Edad</th>
+                                                <th>Moto</th>
+                                                <th>Último empleo</th>
+                                                <th>Antigüedad</th>
+                                                <th>Motivo de salida</th>
+                                                <th>Puesto aplicado</th>
+                                                <th>Estatus</th>
+                                                <th>Comentarios</th>
 											</tr>
 										</thead>
-										<tfoot>
-											<tr>
-												<th>Usuario</th>
-												<th>Password</th>
-												<th>Nombre</th>
-												<th>Tipo Usuario</th>
-											</tr>
-										</tfoot>
 										<tbody>
 											<?php while($row = $resultado->fetch_assoc()) { ?>
 												
 												<tr>
-													<td><?php echo $row['usuario']; ?></td>
-													<td><?php echo $row['password']; ?></td>
-													<td><?php echo $row['nombre']; ?></td>
-													<td><?php echo $row['tipo_usuario']; ?></td>
+													<td><?php echo $row['nombres']; ?></td>
+													<td><?php echo $row['primer_apellido']; ?></td>
+													<td><?php echo $row['segundo_apellido']; ?></td>
+													<td><?php echo $row['telefono']; ?></td>
+                                                    <td><?php echo $row['edad']; ?></td>
+                                                    <td><?php echo $row['moto']; ?></td>
+                                                    <td><?php echo $row['ultimo_empleo']; ?></td>
+                                                    <td><?php echo $row['antiguedad']; ?></td>
+                                                    <td><?php echo $row['motivo_salida']; ?></td>
+                                                    <td><?php echo $row['puesto_aplicado']; ?></td>
+                                                    <td><?php echo $row['estats']; ?></td>
+                                                    <td><?php echo $row['comentarios']; ?></td>
+
 												</tr>
 											<?php } ?>
 										</tbody>
@@ -161,3 +163,4 @@
 		<script src="assets/demo/datatables-demo.js"></script>
 	</body>
 </html>
+ 

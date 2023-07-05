@@ -97,12 +97,16 @@
                             <div class="sb-sidenav-menu-heading">Módulo de registros</div>
                             <a class="nav-link" href="registro_reclutamiento.php"
 								><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-								Candidatos</a
+								Módulo de registro</a
 								>
+                            <a class="nav-link" href="candidatos.php"
+							><div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+							Candidatos</a
+							    >
                             <div class="sb-sidenav-menu-heading">Módulo de información</div>
 							<a class="nav-link" href="tabla.php"
 							><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-								Posibles candidatos</a
+								Usuarios</a
 								>
 							</div>
                             

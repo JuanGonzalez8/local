@@ -6,7 +6,7 @@
 		header("Location: index.php");
 	}
 	
-	$nombres = $_SESSION['nombres'];
+	// $nombres = $_SESSION['nombres'];
 	
 	$sql = "SELECT * FROM reclutamiento";
 	$resultado = $mysqli->query($sql);
@@ -62,12 +62,16 @@
 							<div class="sb-sidenav-menu-heading">Módulo de registros</div>
                             <a class="nav-link" href="registro_reclutamiento.php"
 								><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-								Candidatos</a
+								Módulo de registro</a
 								>
+                            <a class="nav-link" href="candidatos.php"
+							><div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+							Candidatos</a
+							    >
                             <div class="sb-sidenav-menu-heading">Módulo de información</div>
 							<a class="nav-link" href="tabla.php"
 							><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-								Posibles candidatos</a
+								Usuarios</a
 								>
 						</div>
 					</div>
@@ -79,68 +83,96 @@
 			</div>
 			<div id="layoutSidenav_content">
 				<main>
-					<div class="container-fluid">
-						<h1 class="mt-0">Módulo de reclutamiento</h1>
+					<div class="container-fluid"><br>
+						<h1 class="mt-0">Módulo de registro</h1>
 						<ol class="breadcrumb mb-4">
 							<li class="breadcrumb-item"><a href="principal.php">Dashboard</a></li>
 							<li class="breadcrumb-item active">Módulo de reclutamiento</li>
 						</ol>
 						<div class="card mb-4">
-							<div class="card-body">En este apartado, encontrarás la fuente de información sobre los futuros reclutamientos.</div>
+                            <div class="card">
+                                <div class="card-body">
+                                <form method="POST" action="guardar_informacion.php">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="nombres">Nombres</label>
+                                            <input class="form-control inputwidth" type="text" name="nombres" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="primer_apellido">Primer Apellido</label>
+                                            <input class="form-control" type="text" name="primer_apellido" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="segundo_apellido">Segundo Apellido</label>
+                                            <input class="form-control" type="text" name="segundo_apellido" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="telefono">Teléfono</label>
+                                            <input class="form-control" type="text" name="telefono" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="edad">Edad</label>
+                                             <input class="form-control" type="text" name="edad" required>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="moto">¿Cuenta con moto?</label>
+                                                    <select name="moto" id="moto" class="form-control" required>
+                                                        <option selected disabled>Elige una opción</option>
+                                                        <option value="Sí">Sí</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label for="ultimo_empleo">Último Empleo</label>
+                                            <input class="form-control" type="text" name="ultimo_empleo" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <label for="antiguedad">Antigüedad</label>
+                                            <input class="form-control" type="text" name="antiguedad" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="motivo_salida">Motivo de Salida</label>
+                                            <input class="form-control" type="text" name="motivo_salida" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="puesto_aplicado">Puesto Aplicado</label>
+                                            <input class="form-control" type="text" name="puesto_aplicado" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="comentarios">Comentarios</label>
+                                            <textarea class="form-control texta" name="comentarios" required rows="5"></textarea>
+                                        </div>
+                                        <div class="col">
+                                        <div class="form-group">
+                                            <label for="estats">Estatus</label>
+                                                <select name="estats" id="estats" class="form-control" required>
+                                                    <option selected disabled>Elige una opción</option>
+                                                    <option value="Aprobado">Aprobado</option>
+                                                    <option value="Denegado">Denegado</option>
+                                                    <option value="Pendiente">Pendiente</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="liveAlertPlaceholder"></div>
+                                    <input type="submit" value="Guardar" class="btn btn-primary col-2 submitbutton" id="liveAlertBtn">
+                                </form>
+                                </div>
+                            </div>
 						</div>
-						<div class="card mb-4">
-							<form action="registro_reclutamiento.php" method="POST">
-								<input type="text" name="nombres" id="nombres">
-								<input type="submit" value="Enviar">
-								
-							</form>
-						</div>
-						<div class="card mb-4">
-							<div class="card-header"><i class="fas fa-table mr-1"></i>Posibles reclutamientos</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>Nombre</th>
-												<th>Primer apellido</th>
-												<th>Segundo apellido</th>
-												<th>Teléfono</th>
-                                                <th>Edad</th>
-                                                <th>Moto</th>
-                                                <th>Último empleo</th>
-                                                <th>Antigüedad</th>
-                                                <th>Motivo de salida</th>
-                                                <th>Puesto aplicado</th>
-                                                <th>Estatus</th>
-                                                <th>Comentarios</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php while($row = $resultado->fetch_assoc()) { ?>
-												
-												<tr>
-													<td><?php echo $row['nombres']; ?></td>
-													<td><?php echo $row['primer_apellido']; ?></td>
-													<td><?php echo $row['segundo_apellido']; ?></td>
-													<td><?php echo $row['telefono']; ?></td>
-                                                    <td><?php echo $row['edad']; ?></td>
-                                                    <td><?php echo $row['moto']; ?></td>
-                                                    <td><?php echo $row['ultimo_empleo']; ?></td>
-                                                    <td><?php echo $row['antiguedad']; ?></td>
-                                                    <td><?php echo $row['motivo_salida']; ?></td>
-                                                    <td><?php echo $row['puesto_aplicado']; ?></td>
-                                                    <td><?php echo $row['estats']; ?></td>
-                                                    <td><?php echo $row['comentarios']; ?></td>
-
-												</tr>
-											<?php } ?>
-										</tbody>
-									</table>
-								</div>
-								</div>
-								</div>
-											</div>
+					</div>
 					</main>
 					<footer class="py-4 bg-light mt-auto">
 						<div class="container-fluid">
@@ -162,5 +194,6 @@
 		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 		<script src="assets/demo/datatables-demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	</body>
 </html>

@@ -10215,3 +10215,12 @@ body {
 .logonav{
   width: 30px;
 }
+.selw{
+  width: 300px;
+}
+.submitbutton{
+  font-size: 1.4rem;
+}
+.texta{
+  resize: none;
+}
